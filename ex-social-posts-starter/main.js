@@ -94,7 +94,7 @@ posts.forEach((element) =>{
                 <div class="post__footer">
                     <div class="likes js-likes">
                         <div class="likes__cta">
-                            <button id="like_button" class="like-button  js-like-button" href="#" data-postid="1">
+                            <button class="like-button  js-like-button" href="#" data-postid="1">
                                 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                                 <span class="like-button__label">Mi Piace</span>
                             </button>
@@ -111,10 +111,16 @@ posts.forEach((element) =>{
 eleContainer.innerHTML += post;
 
 // Seleziono il bottonne per iterare sui likes
-let myBtn = document.getElementById('#like_button');
+let myBtn = document.querySelectorAll('.like-button');
 
+
+for (let i = 0; i < myBtn.length; i++){
+    myBtn[i].addEventListener("click", function(){
+        addLike();
+    });
+}
 // Quando il myBtn è cliccato deve eseguire una funzione
-myBtn.addEventListener("click", addLike());
+// myBtn.addEventListener("click", addLike());
 
 // FUNCTION
 function addLike(){

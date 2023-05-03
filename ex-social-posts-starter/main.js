@@ -94,10 +94,10 @@ posts.forEach((element) =>{
                 <div class="post__footer">
                     <div class="likes js-likes">
                         <div class="likes__cta">
-                            <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <button id="like_button" class="like-button  js-like-button" href="#" data-postid="1">
                                 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                                 <span class="like-button__label">Mi Piace</span>
-                            </a>
+                            </button>
                         </div>
                         <div class="likes__counter">Piace a <b id="like-counter-${element.id}" class="js-likes-counter">${element.likes}</b> persone</div>
                     </div>
@@ -110,3 +110,13 @@ posts.forEach((element) =>{
 // Inserisco con innerHTML nel container la variabile che ho riempito con il ciclo forEach
 eleContainer.innerHTML += post;
 
+// Seleziono il bottonne per iterare sui likes
+let myBtn = document.getElementById('#like_button');
+
+// Quando il myBtn è cliccato deve eseguire una funzione
+myBtn.addEventListener("click", addLike());
+
+// FUNCTION
+function addLike(){
+    console.log('Ciao');
+}

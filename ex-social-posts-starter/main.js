@@ -7,6 +7,7 @@ Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 */
 
 // Creiamo l'array di oggetti
+const likedPosts = [];
 const posts = [
     {
         "id": 1,
@@ -94,7 +95,8 @@ posts.forEach((element) =>{
                 <div class="post__footer">
                     <div class="likes js-likes">
                         <div class="likes__cta">
-                            <button class="like-button  js-like-button" href="#" data-postid="1">
+                            <button class="like-button  js-like-button"
+                            data-postid="1">
                                 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                                 <span class="like-button__label">Mi Piace</span>
                             </button>
@@ -112,17 +114,21 @@ eleContainer.innerHTML += post;
 
 // Seleziono il bottonne per iterare sui likes
 let myBtn = document.querySelectorAll('.like-button');
+let eleCounters = document.querySelectorAll(".js-likes-counter");
 
-
+// Ciclo per iterare su tutti e 5 i button che si creano selezionandoli 'myBtn diventa un array'
 for (let i = 0; i < myBtn.length; i++){
-    myBtn[i].addEventListener("click", function(){
-        addLike();
-    });
-}
-// Quando il myBtn è cliccato deve eseguire una funzione
-// myBtn.addEventListener("click", addLike());
-
-// FUNCTION
-function addLike(){
-    console.log('Ciao');
+    let eleLike = myBtn[i];
+    eleLike.addEventListener("click", function(){
+        let eleCounter = eleCounters[i];
+        /** il pulsate è stato già cliccato **/
+        if (eleLike.classList.contains('like-button--liked')){
+            posts[i].likes -= 1
+        }
+        else{
+            posts[i].likes += 1
+        }
+        eleLike.classList.toggle('like-button--liked');
+        eleCounter.innerHTML = `${posts[i].likes}`
+    })
 }
